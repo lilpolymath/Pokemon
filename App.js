@@ -8,7 +8,7 @@ import Pokemon from './src/components/Pokemon';
 import getRandomInt from './src/helpers/getRandomInt';
 
 const client = new ApolloClient({
-  uri: 'http://93da8631.ngrok.io',
+  uri: 'http://93da8631.ngrok.io', //replace this with your internal ipaddress.
 });
 
 export const AppContext = React.createContext({data: {pokemon: null}});
