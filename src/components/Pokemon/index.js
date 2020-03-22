@@ -6,15 +6,21 @@ import styles from './styles';
 
 export class Pokemon extends Component {
   render() {
+    const format = text => {
+      return text.replace(/\r?\n|\r/g, ' ');
+    };
     return (
       <AppContext.Consumer>
         {({name, pic, types, desc, onPress}) => (
-          <TouchableOpacity onPress={onPress}>
+          <TouchableOpacity
+            style={[styles.something, styles.pokemon]}
+            onPress={onPress}
+            activeOpacity={0.3}>
             <View style={styles.mainDetails}>
               <Image
                 source={{uri: pic}}
                 style={styles.image}
-                resizeMode={'contain'}
+                resizeMode={'cover'}
               />
               <Text style={styles.mainText}>{name}</Text>
 
@@ -31,9 +37,8 @@ export class Pokemon extends Component {
                   );
                 }}
               />
-
               <View style={styles.description}>
-                <Text>{desc}</Text>
+                <Text>{format(desc)}</Text>
               </View>
             </View>
           </TouchableOpacity>
