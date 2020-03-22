@@ -6,9 +6,10 @@ import ApolloClient from 'apollo-boost';
 
 import Pokemon from './src/components/Pokemon';
 import getRandomInt from './src/helpers/getRandomInt';
+import styles from './src/components/Pokemon/styles';
 
 const client = new ApolloClient({
-  uri: 'http://93da8631.ngrok.io', //replace this with your internal ipaddress.
+  uri: 'https://3ea69aec.ngrok.io', //replace this with your internal ipaddress.
 });
 
 export const AppContext = React.createContext({data: {pokemon: null}});
@@ -30,7 +31,7 @@ export class App extends Component {
   };
 
   getQuery = () => {
-    const randomID = getRandomInt(1, 600);
+    const randomID = getRandomInt(1, 10);
     return `
       query GetPokemonByName {
         pokemon(id: ${randomID}) {
@@ -53,24 +54,26 @@ export class App extends Component {
       return <Text>Nothing dey state</Text>;
     }
     return (
-      <ApolloProvider client={client}>
-        <Query
-          query={gql`
-            ${query}
-          `}>
-          {({loading, error, data}) => {
-            if (loading || error) {
-              return <ActivityIndicator size="large" color="#0000ff" />;
-            }
-            return (
-              <AppContext.Provider
-                value={{...data.pokemon, onPress: this.getNewPokemon}}>
-                <Pokemon />
-              </AppContext.Provider>
-            );
-          }}
-        </Query>
-      </ApolloProvider>
+      <View style={styles.container}>
+        <ApolloProvider client={client}>
+          <Query
+            query={gql`
+              ${query}
+            `}>
+            {({loading, error, data}) => {
+              if (loading || error) {
+                return <ActivityIndicator size="large" color="#0000ff" />;
+              }
+              return (
+                <AppContext.Provider
+                  value={{...data.pokemon, onPress: this.getNewPokemon}}>
+                  <Pokemon />
+                </AppContext.Provider>
+              );
+            }}
+          </Query>
+        </ApolloProvider>
+      </View>
     );
   }
 }

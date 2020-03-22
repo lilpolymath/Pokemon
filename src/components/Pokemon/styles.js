@@ -1,11 +1,21 @@
 const styles = {
+  container: {
+    flex: 1,
+    backgroundColor: '#77BDFE',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  pokemon: {
+    width: 350,
+    height: 'auto',
+  },
   mainDetails: {
-    padding: 30,
+    padding: 20,
     alignItems: 'center',
   },
   image: {
-    width: 100,
-    height: 100,
+    width: 250,
+    height: 250,
   },
   mainText: {
     fontSize: 25,
@@ -14,6 +24,17 @@ const styles = {
   },
   description: {
     marginTop: 20,
+  },
+  something: {
+    backgroundColor: '#F5F5F5',
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 6,
+    },
+    shadowOpacity: 0.4,
+    shadowRadius: 7,
+    elevation: 12,
   },
   types: {
     flexDirection: 'row',
